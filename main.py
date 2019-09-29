@@ -21,7 +21,6 @@ import urllib # for url encoding
 
 #to do
 # fix bug if only one category page
-# fix PDF link problem
 # maybe a table view?
 # add header, pages counting in PDF file
 
@@ -64,10 +63,11 @@ def openBest(data, number):
         else:
             webbrowser.open_new_tab(url)
 
+
 #search url constructor
 def searchUrl(data):
         url = "https://www.empik.com/szukaj/produkt?q="
-        url += data
+        url += urllib.parse.quote_plus(data, safe='', encoding='utf-8', errors=None)
         url += "&qtype=basicForm&ac=true"
         return url
         
@@ -179,10 +179,8 @@ for i in dataList:
     # can't use "\t" in PDF
     pdfText = str(i[1]) + "%    " + str(i[2]) + "    " + str(i[3]) + "    " + i[0]
 
-    encodedLink = urllib.parse.quote_plus(str(searchUrl(i[0])), safe='', encoding='utf-8', errors=None)
-    #print(encodedLink)
-
-    pdf.cell(0, 10, txt=pdfText, ln=1, align="L", fill=False, link=encodedLink)
+    
+    pdf.cell(0, 10, txt=pdfText, ln=1, align="L", fill=False, link=searchUrl(i[0]))
 
     
     if limitCount >= limitResults:
