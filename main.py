@@ -16,13 +16,12 @@ import urllib # for url encoding
 # pip install fpdf
 # DejaVuSansCondensed.ttf font file in program directory
 
-# Working 28.09.2019
+# Working 29.09.2019
 # The program may need modifications if the page changes
 
 #to do
 # fix bug if only one category page
 # maybe a table view?
-# add header, pages counting in PDF file
 
 # add proxy
 # multithreading (not necessary becouse it can look like flood)
@@ -34,9 +33,9 @@ sett_productsPerPage = 60
 # start page number (recommended start from 0),
 sett_startPageNumber = 0
 # category eg. Muzyka = 33,  Kolekcje własne = 46, Gry planszowe = 376301, 0 = no category
-sett_category = 40
+sett_category = 376301
 # use to limit results
-limitResults = 10
+limitResults = 500
 
 
 #data containier
@@ -49,6 +48,7 @@ pdf.add_page()
 #DejaVu Unicode font (uses UTF-8)
 pdf.add_font('DejaVu', '', 'DejaVuSansCondensed.ttf', uni=True)
 pdf.set_font('DejaVu', '', 10)
+
 
 #open top products in browser function
 def openBest(data, number):
